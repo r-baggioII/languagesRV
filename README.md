@@ -1,19 +1,19 @@
 # Language Immersion
 
-Language Immersion es un prototipo educativo para practicar inglés oral en una situación cotidiana. En una cafetería virtual, el estudiante consulta el menú, conversa con Remy, personaliza su pedido y completa un pago simulado. La actividad permite practicar expresiones, comprensión oral y desenvolvimiento en una conversación abierta.
+Language Immersion is an educational prototype for practicing spoken English in an everyday setting. In a virtual café, learners read the menu, talk to Remy, customize their order, and complete a simulated payment. The activity gives learners a chance to practice common expressions, listening comprehension, and the ability to respond in an open-ended conversation.
 
-Unity ejecuta la experiencia en Meta Quest. Un backend Python en la red local empareja el visor y conecta el cliente con Gemini Live para transcribir la voz y con Gemini para generar respuestas según el pedido y el contexto. Remy responde con audio sintetizado por Kokoro en el equipo local o por Cartesia a través de su API.
+The Unity client runs on Meta Quest. A Python backend on the local network pairs the headset and connects the client to Gemini Live for speech transcription and to Gemini for replies that account for the order and conversation context. Kokoro generates Remy's voice on the local computer, and Cartesia is available as a cloud alternative.
 
-## Requisitos
+## Requirements
 
-- Git LFS para descargar las texturas de Small Cafe.
-- Unity Hub con Unity `6000.3.23f1`. Para Quest, instalá también Android Build Support, Android SDK & NDK Tools y OpenJDK.
-- Un equipo Linux con Python 3.12 para ejecutar ambos servicios. En Debian o Ubuntu, instalá `python3-venv`, `python3-pip`, `espeak-ng` y `libsndfile1`.
-- Una clave de Gemini para diálogo y transcripción. Cartesia requiere su propia clave si se elige como proveedor de voz. Kokoro se ejecuta localmente y descarga el modelo en el primer arranque.
+- Git LFS to download the Small Cafe textures.
+- Unity Hub with Unity `6000.3.23f1`. For Quest builds, also install Android Build Support, Android SDK & NDK Tools, and OpenJDK.
+- A Linux computer with Python 3.12 to run the services. On Debian or Ubuntu, install `python3-venv`, `python3-pip`, `espeak-ng`, and `libsndfile1`.
+- A Gemini API key for dialogue and transcription. If you choose Cartesia for text-to-speech, you also need a Cartesia API key. Kokoro runs locally and downloads its model the first time it starts.
 
-## Descargar y abrir el cliente
+## Download and open the Unity project
 
-Con Git LFS instalado, ejecutá estos comandos:
+With Git LFS installed, run the following commands.
 
 ```bash
 git lfs install
@@ -22,11 +22,11 @@ cd languagesRV
 git lfs pull
 ```
 
-En Unity Hub, agregá esa carpeta como proyecto y abrí `Assets/_Project/Scenes/Cafe_VR.unity`. El simulador XR de la escena permite probar la interacción en el Editor. Para Quest usá el perfil de Android con la lista de escenas del proyecto y la configuración de OpenXR incluida.
+In Unity Hub, add the repository folder as a project and open `Assets/_Project/Scenes/Cafe_VR.unity`. Use the scene's XR Interaction Simulator to test interactions in the Unity Editor. For Quest, select the Android build profile and use the project scene list and the included OpenXR settings.
 
-## Iniciar los servicios
+## Start the services
 
-Desde la raíz del repositorio, prepará el backend y guardá tus credenciales en el archivo local `.env`.
+From the repository root, set up the backend and store your credentials in a local `.env` file.
 
 ```bash
 cd backend/language_immersion_backend
@@ -35,9 +35,9 @@ cp -n .env.example .env
 chmod 600 .env
 ```
 
-Completá `GEMINI_API_KEY` en `.env` y, si vas a usar Cartesia, `CARTESIA_API_KEY`. Para el emparejamiento por PIN, dejá `LAN_ACCESS_TOKEN` vacío. Ejecutá `./run.sh` y consultá el PIN de seis dígitos que aparece en la terminal. El backend escucha en el puerto `8081` con un solo proceso para conservar las sesiones en memoria.
+Set `GEMINI_API_KEY` in `.env`. If you plan to use Cartesia, also set `CARTESIA_API_KEY`. Leave `LAN_ACCESS_TOKEN` empty to pair with a PIN. Run `./run.sh` and look for the six-digit PIN in the terminal. The backend listens on port `8081` and uses a single worker to keep sessions in memory.
 
-Kokoro es el proveedor de voz predeterminado. Si lo usás, abrí otra terminal desde la raíz del repositorio.
+Kokoro is the default text-to-speech provider. To use it, open a second terminal at the repository root.
 
 ```bash
 cd backend/kokoro_lan_server
@@ -45,41 +45,40 @@ cd backend/kokoro_lan_server
 ./run.sh
 ```
 
-El primer inicio de Kokoro descarga el modelo y las voces. En el equipo que ejecuta los servicios, `curl http://127.0.0.1:8081/health` comprueba el backend y `curl http://127.0.0.1:8000/health` comprueba Kokoro.
+Kokoro downloads the model and voices the first time it starts. On the computer running the services, use `curl http://127.0.0.1:8081/health` to check the backend and `curl http://127.0.0.1:8000/health` to check Kokoro.
 
-## Emparejar y probar
+## Pair the headset and try the café
 
-1. Conectá el visor y el equipo que ejecuta los servicios a la misma red privada.
-2. En la configuración de la cafetería, ingresá `http://<IP-del-equipo>:8081` y el PIN de la terminal. Seleccioná **CONNECT / PAIR**. El PIN dura diez minutos y se usa una sola vez.
-3. Elegí **Kokoro** o **Cartesia**. Kokoro se conecta al puerto `8000` del mismo equipo.
-4. Apuntá a Remy o al mostrador y usá Grip para iniciar el pedido. Cuando te toque responder, mantené presionado el gatillo izquierdo mientras hablás y soltalo para enviar el turno.
+1. Connect the headset and the computer running the services to the same private network.
+2. In the café settings, enter `http://<computer-LAN-IP>:8081` and the PIN from the terminal. Select **CONNECT / PAIR**. The PIN expires after ten minutes and can be used once.
+3. Choose **Kokoro** or **Cartesia**. With Kokoro selected, the headset connects to port `8000` on the same computer.
+4. Point at Remy or the counter and press the Grip button to start an order. When it is your turn to speak, hold the left trigger while you talk and release it to send your turn.
 
-En la configuración LAN por HTTP, el PIN, los tokens y el audio viajan sin cifrar. Usá los servicios en una red privada de confianza.
+With the LAN configured for HTTP, the PIN, session tokens, and audio travel unencrypted. Run the services on a trusted private network.
 
-## Pruebas del backend
+## Backend tests
 
-Desde `backend/language_immersion_backend`, con el entorno creado por `setup.sh`:
+From `backend/language_immersion_backend`, use the environment created by `setup.sh`.
 
 ```bash
 .venv/bin/python -m pip install pytest
 .venv/bin/python -m pytest -q
 ```
 
-Estas pruebas cubren el emparejamiento y las solicitudes a proveedores simulados. La disponibilidad de los modelos y el uso del micrófono y de los mandos se comprueban en una sesión en el visor.
+These tests cover pairing and requests to simulated providers. Use a live headset session to verify model availability, the microphone, and the controllers.
 
-## Créditos y licencias
+## Credits and licenses
 
-| Recurso | Licencia o condiciones |
+| Resource | License or terms |
 | --- | --- |
-| Small Cafe (dylanheyes), cash_register (OTISRAWTDESIGNS), Payment terminal (nofurion), Credit Cards (Zachery_Singh) y One Dollar Bill (kikzz321) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Las fichas originales y los cambios de integración figuran en los avisos. |
-| Unity Editor | [Términos de Unity Editor](https://unity.com/legal/editor-terms-of-service/software). El editor se instala por separado. |
-| Universal Render Pipeline, OpenXR Plugin de Unity, XR Interaction Toolkit y sus muestras, uGUI y TextMesh Pro | [Unity Companion License](https://unity.com/legal/licenses/unity-companion-license) para proyectos que usan Unity. Cada paquete conserva sus avisos de terceros. |
+| Small Cafe (dylanheyes), cash_register (OTISRAWTDESIGNS), Payment terminal (nofurion), Credit Cards (Zachery_Singh), and One Dollar Bill (kikzz321) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The third-party notices list the original sources and describe the changes made for this project. |
+| Unity Editor | [Unity Editor Software Terms](https://unity.com/legal/editor-terms-of-service/software). Install the editor separately. |
+| Universal Render Pipeline, Unity OpenXR Plugin, XR Interaction Toolkit and its samples, uGUI, and TextMesh Pro | [Unity Companion License](https://unity.com/legal/licenses/unity-companion-license) for projects that use Unity. Each package includes its own third-party notices. |
 | Liberation Sans | [SIL Open Font License 1.1](Assets/StreamingAssets/LIBERATION_SANS_OFL.txt). |
-| Kokoro-82M, Kokoro y Misaki | Apache 2.0. Los pesos se descargan en el primer arranque. [Modelo Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M), [Kokoro](https://github.com/hexgrad/kokoro), [Misaki](https://github.com/hexgrad/misaki). |
-| Dependencias de Python | FastAPI y pytest usan MIT. Uvicorn, HTTPX, python-dotenv, websockets y SoundFile usan BSD-3-Clause. Las distribuciones de PyTorch y NumPy incluyen sus propios avisos. phonemizer-fork y eSpeak NG usan GPL-3.0-o-posterior. Se instalan por separado y conservan sus licencias. |
-| Gemini y Cartesia | Servicios externos sujetos a los [términos de Gemini API](https://ai.google.dev/gemini-api/terms) y los [términos de Cartesia](https://www.cartesia.ai/legal/terms). |
-| MCP for Unity | Herramienta de desarrollo opcional bajo [licencia MIT](https://github.com/CoplayDev/unity-mcp). |
+| Kokoro-82M, Kokoro, and Misaki | Apache 2.0. The model weights are downloaded on first launch. [Kokoro-82M model](https://huggingface.co/hexgrad/Kokoro-82M), [Kokoro](https://github.com/hexgrad/kokoro), [Misaki](https://github.com/hexgrad/misaki). |
+| Python dependencies | FastAPI and pytest use MIT. Uvicorn, HTTPX, python-dotenv, websockets, and SoundFile use BSD-3-Clause. PyTorch and NumPy distributions include their own notices. phonemizer-fork and eSpeak NG use GPL-3.0-or-later. These dependencies are installed separately under their respective licenses. |
+| Gemini and Cartesia | External services governed by the [Gemini API terms](https://ai.google.dev/gemini-api/terms) and the [Cartesia terms](https://www.cartesia.ai/legal/terms). |
 
-La distribución usa geometría propia para Remy y el guante de pago. El prototipo anterior usó Coffee Shop Environment de Leartes Studios bajo la [licencia estándar de Unity Asset Store](https://unity.com/legal/as-terms), un personaje y una animación de [Adobe Mixamo](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html), y Rigged Hand de Lorenzo Drago bajo la [licencia estándar de Sketchfab](https://sketchfab.com/licenses) con marca NoAI. Esos archivos fuente quedan fuera del repositorio.
+This release uses original geometry for Remy and the payment glove. The earlier prototype used Leartes Studios' Coffee Shop Environment under the [standard Unity Asset Store EULA](https://unity.com/legal/as-terms), a character and animation from [Adobe Mixamo](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html), and Lorenzo Drago's Rigged Hand under the [Sketchfab Standard License](https://sketchfab.com/licenses) with the NoAI tag. Those source files were excluded from this release.
 
-Los [avisos de terceros](Assets/StreamingAssets/THIRD_PARTY_NOTICES.txt) acompañan al proyecto y se incluyen en el build mediante `StreamingAssets`. Cada licencia se aplica a su componente. El código y las escenas propias del proyecto carecen de una licencia general de reutilización publicada.
+The [third-party notices](Assets/StreamingAssets/THIRD_PARTY_NOTICES.txt) accompany the project and are included in builds through `StreamingAssets`. Each listed license applies to its own component. The project's original code and scenes have no published general-purpose license for reuse.
