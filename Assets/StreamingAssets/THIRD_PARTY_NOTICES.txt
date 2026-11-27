@@ -1,0 +1,56 @@
+RECURSOS DE TERCEROS — LANGUAGE IMMERSION
+
+Creative Commons Atribución 4.0 Internacional (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Small Cafe — dylanheyes
+https://sketchfab.com/3d-models/small-cafe-0c4d6d98c48c46e6b71f2914fd049c8e
+Integración en Unity con cambios de escala y materiales para URP.
+
+cash_register — OTISRAWTDESIGNS
+https://sketchfab.com/3d-models/cash-register-d149a3c97dd944ad9d0a6d6ca7037663
+Integración en el mostrador con ajustes de tamaño y materiales para URP.
+
+Payment terminal — nofurion
+https://sketchfab.com/3d-models/payment-terminal-12376a29b015453da5f7a0deede21dd8
+Integración en el mostrador con ajustes de tamaño y adaptación de texturas y materiales para URP.
+
+Credit Cards — Zachery_Singh
+https://sketchfab.com/3d-models/credit-cards-ad960311e3a34d1db253b34ea61474e4
+Se seleccionó una tarjeta del modelo y se ajustaron su material, escala y posición para el gesto de pago.
+
+One Dollar Bill — kikzz321
+https://sketchfab.com/3d-models/one-dollar-bill-5867dd6d021846beba9cf589422f7ca1
+Se ajustaron el material, la escala y la posición para el gesto de pago.
+
+Los FBX que contenían rutas absolutas se ajustaron para usar nombres relativos.
+
+UNITY
+
+XR Interaction Toolkit 3.6.1 y las muestras Starter Assets y XR Interaction Simulator.
+Copyright © 2026 Unity Technologies. Unity Companion License para contenido dependiente de Unity.
+https://docs.unity.cn/Packages/com.unity.xr.interaction.toolkit@3.6/license/LICENSE.html
+https://unity.com/legal/licenses/unity-companion-license
+El texto de la licencia acompaña a este archivo.
+Se quitaron rutas absolutas de los metadatos FBX de las muestras que las incluían.
+
+TextMesh Pro y los recursos esenciales proceden de Unity y se distribuyen como parte
+de uGUI bajo la Unity Companion License.
+https://docs.unity3d.com/Packages/com.unity.ugui@2.0/license/LICENSE.html
+Liberation Sans se distribuye bajo la SIL Open Font License 1.1.
+Su aviso acompaña a este archivo y se conserva junto a la fuente importada.
+
+SERVICIOS
+
+Kokoro-82M — hexgrad. Los pesos se descargan al ejecutar el servicio.
+El modelo declara Apache License 2.0.
+https://huggingface.co/hexgrad/Kokoro-82M
+Las dependencias de Python se instalan mediante pip y conservan sus propias licencias.
+Gemini y Cartesia se usan mediante sus API y requieren cuentas y credenciales propias.
+
+RECURSOS DEL PROTOTIPO ANTERIOR
+
+Coffee Shop Environment de Leartes Studios (Unity Asset Store), Remy de Adobe Mixamo
+y Rigged Hand – Game Model de Lorenzo Drago (Sketchfab Free Standard License, NoAI)
+quedaron fuera de esta distribución. El personaje y el guante actuales se construyeron
+con primitivas de Unity. Las decoraciones de Leartes se retiraron de la escena.

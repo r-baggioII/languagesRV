@@ -1,0 +1,194 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1512f6a9f98ded9848e526b222189cb2, type: 3}
+  m_Name: RemysCafeMenu
+  m_EditorClassIdentifier: Assembly-CSharp::CafeMenuData
+  items:
+  - displayName: Brewed Coffee
+    category: 0
+    description: 
+    basePriceCents: 325
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 0
+    supportsMilkCustomization: 1
+  - displayName: Americano
+    category: 0
+    description: 
+    basePriceCents: 400
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: Cappuccino
+    category: 0
+    description: 
+    basePriceCents: 525
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 0
+    supportsMilkCustomization: 1
+  - displayName: "Caff\xE8 Latte"
+    category: 0
+    description: 
+    basePriceCents: 525
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: "Caff\xE8 Mocha"
+    category: 0
+    description: 
+    basePriceCents: 575
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: Caramel Macchiato
+    category: 0
+    description: 
+    basePriceCents: 595
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: Iced Coffee
+    category: 1
+    description: 
+    basePriceCents: 400
+    hasSizes: 1
+    supportsHot: 0
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: Cold Brew
+    category: 1
+    description: 
+    basePriceCents: 475
+    hasSizes: 1
+    supportsHot: 0
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: Iced Latte
+    category: 1
+    description: 
+    basePriceCents: 525
+    hasSizes: 1
+    supportsHot: 0
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: Chai Latte
+    category: 2
+    description: 
+    basePriceCents: 525
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: Matcha Latte
+    category: 2
+    description: 
+    basePriceCents: 550
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 1
+    supportsMilkCustomization: 1
+  - displayName: Hot Chocolate
+    category: 2
+    description: 
+    basePriceCents: 450
+    hasSizes: 1
+    supportsHot: 1
+    supportsIced: 0
+    supportsMilkCustomization: 1
+  - displayName: Butter Croissant
+    category: 3
+    description: 
+    basePriceCents: 350
+    hasSizes: 0
+    supportsHot: 0
+    supportsIced: 0
+    supportsMilkCustomization: 0
+  - displayName: Chocolate Croissant
+    category: 3
+    description: 
+    basePriceCents: 400
+    hasSizes: 0
+    supportsHot: 0
+    supportsIced: 0
+    supportsMilkCustomization: 0
+  - displayName: Blueberry Muffin
+    category: 3
+    description: 
+    basePriceCents: 375
+    hasSizes: 0
+    supportsHot: 0
+    supportsIced: 0
+    supportsMilkCustomization: 0
+  - displayName: Chocolate Chip Cookie
+    category: 3
+    description: 
+    basePriceCents: 300
+    hasSizes: 0
+    supportsHot: 0
+    supportsIced: 0
+    supportsMilkCustomization: 0
+  - displayName: Bacon, Egg & Cheese Sandwich
+    category: 4
+    description: 
+    basePriceCents: 625
+    hasSizes: 0
+    supportsHot: 0
+    supportsIced: 0
+    supportsMilkCustomization: 0
+  - displayName: Sausage, Egg & Cheese Sandwich
+    category: 4
+    description: 
+    basePriceCents: 625
+    hasSizes: 0
+    supportsHot: 0
+    supportsIced: 0
+    supportsMilkCustomization: 0
+  - displayName: Veggie & Egg Wrap
+    category: 4
+    description: 
+    basePriceCents: 575
+    hasSizes: 0
+    supportsHot: 0
+    supportsIced: 0
+    supportsMilkCustomization: 0
+  sizePricing:
+    smallAdjustmentCents: -50
+    mediumAdjustmentCents: 0
+    largeAdjustmentCents: 75
+  milkOptions:
+  - option: 0
+    displayName: Whole milk
+    priceAdjustmentCents: 0
+  - option: 1
+    displayName: Skim milk
+    priceAdjustmentCents: 0
+  - option: 2
+    displayName: Oat milk
+    priceAdjustmentCents: 0
+  - option: 3
+    displayName: Almond milk
+    priceAdjustmentCents: 0
+  extras:
+  - option: 0
+    displayName: Extra espresso shot
+    priceAdjustmentCents: 100
+  - option: 1
+    displayName: Vanilla syrup
+    priceAdjustmentCents: 75
+  - option: 2
+    displayName: Caramel syrup
+    priceAdjustmentCents: 75
